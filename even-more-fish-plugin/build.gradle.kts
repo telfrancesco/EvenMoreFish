@@ -23,7 +23,7 @@ description = "A fishing extension bringing an exciting new experience to fishin
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
         vendor.set(JvmVendorSpec.ADOPTIUM)
     }
 }
@@ -91,6 +91,7 @@ dependencies {
     compileOnly(libs.maven.artifact)
     compileOnly(libs.annotations)
     compileOnly(libs.guava)
+    compileOnly("su.nightexpress.coinsengine:CoinsEngine:2.6.0")
 
     compileOnlyApi(libs.boostedyaml)
 

@@ -79,7 +79,7 @@ public class FishingProcessor extends Processor<PlayerFishEvent> {
             return;
         }
 
-        if (MainConfig.getInstance().isGiveStraightToInventory() && isSpaceForNewFish(event.getPlayer().getInventory())) {
+        if (isSpaceForNewFish(event.getPlayer().getInventory())) {
             FishUtils.giveItem(fish, event.getPlayer());
             nonCustom.remove();
             return;

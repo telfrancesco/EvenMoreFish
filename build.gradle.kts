@@ -21,6 +21,7 @@ allprojects {
         maven("https://repo.essentialsx.net/releases/")
         maven("https://repo.auxilor.io/repository/maven-public/")
         maven("https://repo.rosewooddev.io/repository/public/")
+        maven("https://repo.nightexpressdev.com/releases")
         maven("https://repo.minebench.de/")
         maven("https://repo.codemc.io/repository/FireML/")
         maven("https://repo.dmulloy2.net/repository/public/") {

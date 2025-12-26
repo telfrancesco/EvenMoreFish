@@ -2,6 +2,7 @@ package com.oheers.fish.plugin;
 
 import com.oheers.fish.EvenMoreFish;
 import com.oheers.fish.config.MainConfig;
+import com.oheers.fish.economy.CoinsEngineEconomyType;
 import com.oheers.fish.economy.GriefPreventionEconomyType;
 import com.oheers.fish.economy.PlayerPointsEconomyType;
 import com.oheers.fish.economy.VaultEconomyType;
@@ -28,6 +29,7 @@ public class DependencyManager implements Listener {
 
     // Dependency flags
     private boolean usingVault;
+    private boolean usingCoinsEngine;
     private boolean usingPAPI;
     private boolean usingMcMMO;
     private boolean usingHeadsDB;
@@ -51,6 +53,7 @@ public class DependencyManager implements Listener {
         this.usingPAPI = pm.isPluginEnabled("PlaceholderAPI");
         this.usingAureliumSkills = pm.isPluginEnabled("AureliumSkills");
         this.usingAuraSkills = pm.isPluginEnabled("AuraSkills");
+        this.usingCoinsEngine = pm.isPluginEnabled("CoinsEngine");
 
         if (usingVault) {
             setupVaultPermissions();
@@ -119,6 +122,10 @@ public class DependencyManager implements Listener {
         return usingPlayerPoints;
     }
 
+    public boolean isUsingCoinsEngine() {
+        return usingCoinsEngine;
+    }
+
     public boolean isUsingGriefPrevention() {
         return usingGriefPrevention;
     }
@@ -140,7 +147,7 @@ public class DependencyManager implements Listener {
     }
 
     public boolean isEconomyAvailable() {
-        return usingVault || usingPlayerPoints || usingGriefPrevention;
+        return usingVault || usingPlayerPoints || usingGriefPrevention || usingCoinsEngine;
     }
 
     public boolean isHeadsDBLoaded() {
@@ -165,6 +172,10 @@ public class DependencyManager implements Listener {
 
         if (isUsingGriefPrevention()) {
             new GriefPreventionEconomyType().register();
+        }
+
+        if(isUsingCoinsEngine()) {
+            new CoinsEngineEconomyType().register();
         }
     }
 

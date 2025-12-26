@@ -90,7 +90,7 @@ public class MainConfig extends ConfigBase {
     }
 
     public boolean isGiveStraightToInventory() {
-        return getConfig().getBoolean("fishing.give-straight-to-inventory", false);
+        return getConfig().getBoolean("fishing.give-straight-to-inventory", true);
     }
 
     public boolean isFishCatchOverrideOnlyFish() {

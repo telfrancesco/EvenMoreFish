@@ -126,7 +126,6 @@ public class BaitNBTManager {
      * @throws MaxBaitReachedException  When one of the baits has hit maximum set by max-baits in baits.yml
      */
     public static ApplicationResult applyBaitedRodNBT(ItemStack item, BaitHandler bait, int quantity) throws MaxBaitsReachedException, MaxBaitReachedException {
-        boolean doingLoreStuff = MainConfig.getInstance().getBaitAddToLore();
         AtomicBoolean maxBait = new AtomicBoolean(false);
         AtomicInteger cursorModifier = new AtomicInteger();
 
@@ -138,7 +137,7 @@ public class BaitNBTManager {
 
             // We can manage the last character not being a colon if we have to add it in ourselves.
             if (!foundBait) {
-                addNewBait(item, bait, quantity, combined, cursorModifier, maxBait, doingLoreStuff);
+                addNewBait(item, bait, quantity, combined, cursorModifier, maxBait, true);
             } else {
                 if (!combined.isEmpty()) {
                     combined.deleteCharAt(combined.length() - 1);
@@ -149,7 +148,7 @@ public class BaitNBTManager {
             applyInitialBait(item, bait, quantity, combined, cursorModifier, maxBait);
         }
 
-        if (doingLoreStuff && !combined.isEmpty()) {
+        if (!combined.isEmpty()) {
             item.editMeta(meta -> meta.lore(newApplyLore(item)));
         }
 

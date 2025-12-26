@@ -94,6 +94,15 @@ public class FishJournalGui extends ConfigGui {
             return ItemFactory.itemFactory(section, "undiscovered-fish").createItem(player.getUniqueId());
         }
 
+        FishStats fishStats = EvenMoreFish.getInstance()
+                .getPluginDataManager()
+                .getFishStatsDataManager()
+                .get(FishRarityKey.of(fish).toString());
+
+        if (fishStats == null) {
+            return new ItemStack(org.bukkit.Material.AIR);
+        }
+
         boolean hideUndiscovered = section.getBoolean("hide-undiscovered-fish", true);
         // If undiscovered fish should be hidden
         if (hideUndiscovered && !database.userHasFish(fish, player)) {
@@ -152,7 +161,12 @@ public class FishJournalGui extends ConfigGui {
 
     @NotNull
     private String getValueOrUnknown(Supplier<String> supplier) {
-        return Optional.ofNullable(supplier.get()).orElse("Unknown");
+        try {
+            String value = supplier.get();
+            return value != null ? value : "Unknown";
+        } catch (Exception e) {
+            return "Unknown";
+        }
     }
 
 

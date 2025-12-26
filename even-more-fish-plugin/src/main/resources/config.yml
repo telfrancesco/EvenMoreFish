@@ -92,7 +92,10 @@ economy:
     enabled: false
     multiplier: 1.0
     display: '{amount} Claim Block(s)'
-
+  coinsengine:
+    enabled: false
+    currency: "punti_pesca"
+    multiplier: 1.0
 # Setting this to change the boosbar style
 # you can use like: NOTCHED_6 NOTCHED_10 NOTCHED_12 NOTCHED_20 PROGRESS
 barstyle: NOTCHED_10
